@@ -1,0 +1,10 @@
+{
+  "name": "@gc-project/gc-project-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@gc-project/gc-project"
+    ]
+  }
+}
