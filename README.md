@@ -49,6 +49,19 @@ GC Project é uma plataforma para pessoas se cadastrarem e encontrarem parceiros
 
 ---
 
+## 🌐 Configuração de ambiente do Frontend
+
+Para que o frontend se comunique corretamente com o backend, crie um arquivo `.env.local` na pasta do frontend com o seguinte conteúdo:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:3000
+```
+
+- Altere o valor conforme o endereço do seu backend.
+- O frontend irá usar essa variável para todas as requisições à API.
+
+---
+
 ## 🎮 Importação dos Jogos da Steam
 
 Para popular o banco com os jogos da Steam, execute o script abaixo:
