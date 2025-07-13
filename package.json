@@ -2,7 +2,9 @@
   "name": "@gc-project/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev": "nx run-many --target=serve --projects=frontend,backend --parallel"
+  },
   "private": true,
   "dependencies": {
     "@nestjs/common": "^10.0.2",
@@ -30,7 +32,7 @@
     "@nx/jest": "21.2.3",
     "@nx/js": "21.2.3",
     "@nx/nest": "19.8.4",
-    "@nx/next": "21.2.3",
+    "@nx/next": "^21.2.3",
     "@nx/node": "19.8.4",
     "@nx/web": "21.2.3",
     "@nx/webpack": "21.2.3",

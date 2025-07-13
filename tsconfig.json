@@ -2,18 +2,5 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
-  "references": [
-    {
-      "path": "./apps/gc-project-e2e"
-    },
-    {
-      "path": "./apps/gc-project"
-    },
-    {
-      "path": "./frontend-e2e"
-    },
-    {
-      "path": "./frontend"
-    }
-  ]
+  "references": []
 }
