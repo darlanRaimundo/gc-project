@@ -12,6 +12,18 @@ export class Game {
   nome!: string;
 
   @ApiProperty()
-  @Column()
-  categoria!: string;
+  @Column({ nullable: true })
+  appid?: number;
+
+  @ApiProperty()
+  @Column({ nullable: true })
+  provider!: string;
+
+  @ApiProperty({ type: [String] })
+  @Column('json')
+  categoria!: string[];
+
+  @ApiProperty()
+  @Column({ nullable: true })
+  header_image?: string;
 }

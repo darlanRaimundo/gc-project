@@ -19,13 +19,29 @@ export class CreateGamesTable1680000000000 implements MigrationInterface {
             isNullable: false,
           },
           {
-            name: 'categoria',
+            name: 'appid',
+            type: 'int',
+            isNullable: true,
+          },
+          {
+            name: 'provider',
             type: 'varchar',
             isNullable: false,
+            default: '',
+          },
+          {
+            name: 'categoria',
+            type: 'json',
+            isNullable: false,
+          },
+          {
+            name: 'header_image',
+            type: 'varchar',
+            isNullable: true,
           },
         ],
       }),
-      true,
+      true
     );
   }
 

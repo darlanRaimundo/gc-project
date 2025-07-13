@@ -34,14 +34,21 @@ export class GameController {
       type: 'object',
       properties: {
         nome: { type: 'string' },
-        categoria: { type: 'string' },
+        appid: { type: 'number' },
+        provider: { type: 'string'},
+        categoria: { type: 'array', items: { type: 'string' } },
       },
       required: ['nome', 'categoria'],
     },
   })
   @ApiResponse({ status: 201, description: 'Jogo criado', type: Game })
-  async create(@Body() data: { nome: string; categoria: string }): Promise<Game> {
-    const game = this.gameRepository.create(data);
+  async create(
+    @Body() data: { nome: string; appid?: number; provider?: string; categoria: string[] }
+  ): Promise<Game> {
+    const game = this.gameRepository.create({
+      ...data,
+      provider: data.provider,
+    });
     return this.gameRepository.save(game);
   }
 }
