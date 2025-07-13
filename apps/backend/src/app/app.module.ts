@@ -7,13 +7,13 @@ import { AppService } from './app.service';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',        // seu usuário do MySQL
-      password: '88325536',   // sua senha do MySQL
-      database: 'gc_project',  // nome do banco de dados
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: true,       // use true só em desenvolvimento!
+      synchronize: true, // ajuste conforme ambiente
     }),
   ],
   controllers: [AppController],
