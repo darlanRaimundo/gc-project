@@ -1,24 +1,38 @@
+'use client';
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation'; // Corrigido o import
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    // TODO: implementar chamada de login na API
-    setTimeout(() => {
-      setLoading(false);
-      if (!email || !senha) {
-        setError('Preencha todos os campos.');
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/users/login`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, senha }), // Certifique-se que senha está correta
+        },
+      );
+      const data = await res.json();
+      if (res.ok && data.token) {
+        localStorage.setItem('token', data.token);
+        router.push('/dashboard');
       } else {
-        alert(`Email: ${email}\nSenha: ${senha}`);
+        setError(data.error || 'Credenciais inválidas');
       }
-    }, 1000);
+    } catch (err) {
+      setError('Erro de conexão com o servidor: ' + (err as Error).message);
+    }
+    setLoading(false);
   };
 
   return (
@@ -67,7 +81,7 @@ const LoginPage: React.FC = () => {
         </form>
         <div className="mt-6 text-center text-sm text-gray-500">
           Ainda não tem conta?{' '}
-          <a href="#" className="text-blue-600 hover:underline">
+          <a href="/register" className="text-blue-600 hover:underline">
             Cadastre-se
           </a>
         </div>

@@ -12,12 +12,6 @@ export class GameController {
     private readonly gameRepository: Repository<Game>,
   ) {}
 
-  @Get('test')
-  @ApiOperation({ summary: 'Endpoint de teste para Swagger' })
-  test(): string {
-    return 'GameController está funcionando';
-  }
-
   @Get()
   @ApiOperation({ summary: 'Lista todos os jogos' })
   @ApiResponse({ status: 200, description: 'Lista de jogos', type: [Game] })
