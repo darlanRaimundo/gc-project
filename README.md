@@ -14,6 +14,11 @@ GC Project é uma plataforma para pessoas se cadastrarem e encontrarem parceiros
 - **Backend:** NestJS
 - **Monorepo:** Nx
 
+## Pré-requisitos
+
+- Node.js >= 18.x
+- npm >= 9.x
+
 ## Como rodar o projeto
 
 1. Instale as dependências:
@@ -30,6 +35,16 @@ GC Project é uma plataforma para pessoas se cadastrarem e encontrarem parceiros
    ```bash
    nx serve frontend
    ```
+
+---
+
+## Documentação da API
+
+Após iniciar o backend, acesse a documentação Swagger dos endpoints em:
+
+```
+http://localhost:3000/api/docs
+```
 
 ---
 

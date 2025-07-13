@@ -10,12 +10,14 @@
     "@nestjs/common": "^10.0.2",
     "@nestjs/core": "^10.0.2",
     "@nestjs/platform-express": "^10.0.2",
+    "@nestjs/swagger": "^7.4.2",
     "axios": "^1.6.0",
     "next": "~15.2.4",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/compat": "^1.1.1",
@@ -46,6 +48,8 @@
     "@types/node": "18.16.9",
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
+    "ajv": "^6.12.6",
+    "ajv-keywords": "^3.5.2",
     "autoprefixer": "10.4.13",
     "babel-jest": "^29.7.0",
     "eslint": "^9.8.0",
