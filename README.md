@@ -39,6 +39,16 @@ GC Project é uma plataforma para pessoas se cadastrarem e encontrarem parceiros
    ```
 4. Certifique-se de que o banco de dados está rodando antes de iniciar o backend.
 
+## Importação dos Jogos da Steam
+
+Para popular o banco com os jogos da Steam, execute o script abaixo:
+
+```bash
+npm run import:steam
+```
+
+Esse comando irá buscar todos os jogos da Steam e cadastrá-los em lotes no banco de dados.
+
 ## Como rodar o projeto
 
 1. Instale as dependências:
