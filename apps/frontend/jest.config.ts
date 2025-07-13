@@ -7,13 +7,14 @@ const createJestConfig = nextJest({
 
 const config: Config = {
   displayName: '@gc-project/frontend',
-  preset: '../jest.preset.js',
+  preset: '../../jest.preset.js',
   transform: {
     '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../coverage/frontend',
   testEnvironment: 'jsdom',
+  forceExit: true, // Ensures Jest exits after tests complete
 };
 
 export default createJestConfig(config);

@@ -29,19 +29,24 @@
       "jest",
       "node"
     ],
-    "outDir": "dist",
-    "rootDir": "src",
+    "outDir": "../../dist/out-tsc",
+    // "rootDir": "src",
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
   },
   "include": [
     "../dist/frontend/.next/types/**/*.ts",
     "../frontend/.next/types/**/*.ts",
+    ".next/types/**/*.ts",
     "next-env.d.ts",
     "src/**/*.js",
     "src/**/*.jsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    ".next/types/**/*.ts"
+    "../../dist/apps/frontend/.next/types/**/*.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx"
   ],
   "exclude": [
     "out-tsc",
