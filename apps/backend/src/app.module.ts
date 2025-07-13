@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GameModule } from './game/game.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { GameModule } from './game/game.module';
       synchronize: false,
     }),
     GameModule,
+    UserModule,
     // other modules
   ],
   // other properties
