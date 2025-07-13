@@ -1,38 +1,20 @@
 'use client';
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Corrigido o import
+import { useRouter } from 'next/navigation';
+import { useLogin } from '../hooks/useLogin';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
   const router = useRouter();
+  const { login, loading, error } = useLogin();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setError('');
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/users/login`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, senha }), // Certifique-se que senha está correta
-        },
-      );
-      const data = await res.json();
-      if (res.ok && data.token) {
-        localStorage.setItem('token', data.token);
-        router.push('/dashboard');
-      } else {
-        setError(data.error || 'Credenciais inválidas');
-      }
-    } catch (err) {
-      setError('Erro de conexão com o servidor: ' + (err as Error).message);
+    const result = await login(email, senha);
+    if (result.token) {
+      router.push('/dashboard');
     }
-    setLoading(false);
   };
 
   return (
