@@ -8,6 +8,12 @@
     },
     {
       "path": "./apps/gc-project"
+    },
+    {
+      "path": "./frontend-e2e"
+    },
+    {
+      "path": "./frontend"
     }
   ]
 }
