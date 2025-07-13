@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Like, Raw } from 'typeorm';
 import { Game } from './game.entity';
 import { ApiTags, ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
 
@@ -13,10 +13,31 @@ export class GameController {
   ) {}
 
   @Get()
-  @ApiOperation({ summary: 'Lista todos os jogos' })
+  @ApiOperation({ summary: 'Lista todos os jogos com paginação, pesquisa e filtro' })
   @ApiResponse({ status: 200, description: 'Lista de jogos', type: [Game] })
-  async findAll(): Promise<Game[]> {
-    return this.gameRepository.find();
+  async findAll(
+    @Query('page') page = '1',
+    @Query('limit') limit = '12',
+    @Query('search') search?: string,
+    @Query('categoria') categoria?: string,
+  ): Promise<{ data: Game[]; total: number; page: number; limit: number }> {
+    const pageNum = Math.max(Number(page), 1);
+    const limitNum = Math.max(Number(limit), 1);
+
+    const where: any = {};
+    if (search) {
+      where.nome = Like(`%${search}%`);
+    }
+    if (categoria) {
+      where.categoria = Raw((alias) => `JSON_CONTAINS(${alias}, '["${categoria}"]')`);
+    }
+
+    const [data, total] = await this.gameRepository.findAndCount({
+      where,
+      skip: (pageNum - 1) * limitNum,
+      take: limitNum,
+    });
+    return { data, total, page: pageNum, limit: limitNum };
   }
 
   @Post()
