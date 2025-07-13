@@ -7,7 +7,8 @@
     "typeorm:migrate": "npx ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run -d apps/backend/src/data-source.ts",
     "typeorm:migrate:revert": "npx ts-node --transpile-only ./node_modules/typeorm/cli.js migration:revert -d apps/backend/src/data-source.ts",
     "typeorm:migration:generate": "npx ts-node --transpile-only ./node_modules/typeorm/cli.js migration:generate apps/backend/migrations/NewMigration -d apps/backend/src/data-source.ts",
-    "import:steam": "ts-node scripts/import-steam-apps.ts"
+    "import:steam": "ts-node scripts/import-steam-apps.ts",
+    "format": "prettier --write \"apps/**/*.ts\" \"scripts/**/*.ts\""
   },
   "private": true,
   "dependencies": {

@@ -5,16 +5,12 @@ import axios from 'axios';
 async function main() {
   await AppDataSource.initialize();
 
-  const response = await axios.get(
-    'https://api.steampowered.com/ISteamApps/GetAppList/v2/'
-  );
+  const response = await axios.get('https://api.steampowered.com/ISteamApps/GetAppList/v2/');
   const apps = response.data.applist.apps;
 
   const batchSize = 1000;
   for (let i = 0; i < apps.length; i += batchSize) {
-    console.log(
-      `Processando jogos ${i + 1} a ${Math.min(i + batchSize, apps.length)}...`
-    );
+    console.log(`Processando jogos ${i + 1} a ${Math.min(i + batchSize, apps.length)}...`);
     const batch: Game[] = [];
     for (const app of apps.slice(i, i + batchSize)) {
       let categorias: string[] = [];
@@ -26,7 +22,7 @@ async function main() {
           `https://store.steampowered.com/api/appdetails?appids=${app.appid}`,
           {
             headers: { 'User-Agent': 'Mozilla/5.0' },
-          }
+          },
         );
         const appDetails = details.data[app.appid];
         console.log(`Detalhes do appid ${app.appid} obtidos com sucesso.`);
@@ -52,11 +48,7 @@ async function main() {
       }
     }
 
-    await AppDataSource.createQueryBuilder()
-      .insert()
-      .into(Game)
-      .values(batch)
-      .execute();
+    await AppDataSource.createQueryBuilder().insert().into(Game).values(batch).execute();
 
     console.log(`Inseridos: ${i + batch.length} / ${apps.length}`);
   }

@@ -10,9 +10,7 @@ export class GameController {
   constructor(
     @InjectRepository(Game)
     private readonly gameRepository: Repository<Game>,
-  ) {
-    console.log('GameController carregado');
-  }
+  ) {}
 
   @Get('test')
   @ApiOperation({ summary: 'Endpoint de teste para Swagger' })
@@ -35,7 +33,7 @@ export class GameController {
       properties: {
         nome: { type: 'string' },
         appid: { type: 'number' },
-        provider: { type: 'string'},
+        provider: { type: 'string' },
         categoria: { type: 'array', items: { type: 'string' } },
       },
       required: ['nome', 'categoria'],
@@ -43,7 +41,7 @@ export class GameController {
   })
   @ApiResponse({ status: 201, description: 'Jogo criado', type: Game })
   async create(
-    @Body() data: { nome: string; appid?: number; provider?: string; categoria: string[] }
+    @Body() data: { nome: string; appid?: number; provider?: string; categoria: string[] },
   ): Promise<Game> {
     const game = this.gameRepository.create({
       ...data,
