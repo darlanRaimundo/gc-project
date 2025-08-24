@@ -70,6 +70,10 @@ Para popular o banco com os jogos da Steam, execute o script abaixo:
 npm run import:steam
 ```
 
+Observações:
+
+- Esse comando leva muito tempo...
+
 Esse comando irá buscar todos os jogos da Steam e cadastrá-los em lotes no banco de dados.
 
 ### 🏷️ Importação das Categorias
