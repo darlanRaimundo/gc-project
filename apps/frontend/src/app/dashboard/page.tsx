@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useGames } from '../hooks/useGames';
 import { useCategories } from '../hooks/useCategories';
+import Image from 'next/image';
 
 const DashboardPage: React.FC = () => {
   const router = useRouter();
@@ -82,14 +83,16 @@ const DashboardPage: React.FC = () => {
             {(listaJogos.length > 0 ? listaJogos : []).map((game, idx) => (
               <div
                 key={game.id || idx}
-                className="bg-blue-50 rounded-lg shadow p-4 flex flex-col items-center"
+                className="bg-blue-50 rounded-lg shadow p-4 flex flex-col items-center cursor-pointer hover:shadow-lg transition"
+                onClick={() => router.push(`/game/${game.id}`)}
               >
-                <img
+                <Image
                   src={game.header_image || 'https://placehold.co/100x100'}
                   alt={game.nome}
                   width={80}
                   height={80}
                   className="mb-4 rounded-full w-20 h-20 object-cover"
+                  unoptimized
                 />
                 <h3 className="text-lg font-semibold text-blue-700 mb-2">{game.nome}</h3>
                 <p className="text-gray-600 text-center">

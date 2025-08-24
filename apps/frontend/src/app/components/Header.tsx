@@ -16,7 +16,12 @@ const Header: React.FC<HeaderProps> = ({ showLogout }) => {
 
   return (
     <header className="w-full bg-purple-700 text-white flex justify-between items-center px-8 py-4 shadow">
-      <h1 className="text-xl font-bold">GC Project</h1>
+      <button
+        onClick={() => router.push('/dashboard')}
+        className="text-white hover:text-gray-200 transition-colors"
+      >
+        <h1 className="text-xl font-bold">GC Project</h1>
+      </button>
       {showLogout && (
         <button
           onClick={handleLogout}

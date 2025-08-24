@@ -6,7 +6,7 @@ export interface Game {
   appid?: number;
   provider?: string;
   categoria?: string[];
-  header_image?: string;
+  header_image: string;
 }
 
 export function useGames(page = 1, limit = 12, search = '', categoria = '') {
@@ -43,5 +43,17 @@ export function useGames(page = 1, limit = 12, search = '', categoria = '') {
     fetchGames();
   }, [page, limit, search, categoria]);
 
-  return { games, total, loading, error };
+  const getGameById = async (id: number) => {
+    try {
+      const url = `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/games/${id}`;
+      const res = await fetch(url);
+      const result = await res.json();
+      return result as Game;
+    } catch (err) {
+      setError('Erro ao buscar jogos');
+      return null;
+    }
+  };
+
+  return { games, total, loading, error, getGameById };
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, Param } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Like, Raw } from 'typeorm';
 import { Game } from './game.entity';
@@ -11,6 +11,13 @@ export class GameController {
     @InjectRepository(Game)
     private readonly gameRepository: Repository<Game>,
   ) {}
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Busca um jogo pelo ID' })
+  @ApiResponse({ status: 200, description: 'Jogo encontrado', type: Game })
+  async findOne(@Param('id') id: string): Promise<Game> {
+    return this.gameRepository.findOneOrFail({ where: { id } });
+  }
 
   @Get()
   @ApiOperation({ summary: 'Lista todos os jogos com paginação, pesquisa e filtro' })
