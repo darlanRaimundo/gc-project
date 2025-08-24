@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GameModule } from './game/game.module';
 import { UserModule } from './user/user.module';
+import { Category } from './category/category.entity';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -15,9 +17,9 @@ import { UserModule } from './user/user.module';
       autoLoadEntities: true,
       synchronize: false,
     }),
+    CategoryModule,
     GameModule,
     UserModule,
-    // other modules
   ],
   // other properties
 })

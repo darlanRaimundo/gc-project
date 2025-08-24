@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useGames } from '../hooks/useGames';
+import { useCategories } from '../hooks/useCategories';
 
 const DashboardPage: React.FC = () => {
   const router = useRouter();
@@ -15,15 +16,15 @@ const DashboardPage: React.FC = () => {
   // Listagem paginada e filtrada
   const { games, total, loading, error } = useGames(page, limit, '', categoria);
 
+  // Lista todas categorias
+  const { categories } = useCategories();
+
   // Pesquisa por nome (sem paginação)
   const {
     games: searchGames,
     loading: loadingSearch,
     error: errorSearch,
   } = useGames(1, 999, search, '');
-
-  // Extrai categorias únicas dos jogos carregados
-  const categoriasUnicas = Array.from(new Set(games.flatMap((game) => game.categoria || [])));
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -68,9 +69,9 @@ const DashboardPage: React.FC = () => {
               disabled={showSearch}
             >
               <option value="">Todas categorias</option>
-              {categoriasUnicas.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.nome}>
+                  {cat.nome}
                 </option>
               ))}
             </select>

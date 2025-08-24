@@ -4,7 +4,7 @@ import { Repository, Like, Raw } from 'typeorm';
 import { Game } from './game.entity';
 import { ApiTags, ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
 
-@ApiTags('games')
+@ApiTags('Jogos')
 @Controller('games')
 export class GameController {
   constructor(

@@ -1,6 +1,6 @@
 import { AppDataSource } from '../apps/backend/src/data-source';
 import { Game } from '../apps/backend/src/game/game.entity';
-import { Category } from '../apps/backend/src/game/category.entity';
+import { Category } from '../apps/backend/src/category/category.entity';
 
 async function main() {
   // Inicializa a conexão com o banco (TypeORM)

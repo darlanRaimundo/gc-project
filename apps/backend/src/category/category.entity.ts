@@ -1,4 +1,3 @@
-// IMplementar entity Category
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity()
 export class Category {
