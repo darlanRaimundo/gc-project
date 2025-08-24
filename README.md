@@ -72,6 +72,23 @@ npm run import:steam
 
 Esse comando irá buscar todos os jogos da Steam e cadastrá-los em lotes no banco de dados.
 
+### 🏷️ Importação das Categorias
+
+Após importar os jogos, gere e salve todas as categorias extraídas dos jogos executando:
+
+```bash
+npm run save:categories
+```
+
+Observações:
+
+- Certifique-se de que o backend e o banco de dados estão rodando.
+- Aplique as migrations antes de rodar o script:
+  ```bash
+  npm run typeorm:migrate
+  ```
+- O script lê os campos de categoria dos registros de jogos e insere apenas categorias novas.
+
 ---
 
 ## ▶️ Como rodar o projeto
