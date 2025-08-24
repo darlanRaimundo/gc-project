@@ -36,75 +36,88 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 to-blue-200">
-      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-green-700">Cadastro</h2>
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label htmlFor="nome" className="block text-sm font-medium text-gray-700">
-              Nome
-            </label>
-            <input
-              id="nome"
-              type="text"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              required
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
-              placeholder="Digite seu nome"
-              autoComplete="name"
-            />
+    <div className="min-h-screen flex flex-col bg-[var(--bg-dark)]">
+      <main className="dashboard-shell items-center justify-center p-10">
+        <aside className="dashboard-rail w-full max-w-lg mx-auto rounded-2xl shadow-2xl bg-[rgba(0,0,0,0.35)]">
+          <div className="rail-cta p-8 text-center">
+            <h2>Central Gamer</h2>
+            <p className="mt-3 text-sm text-gray-300">
+              Crie sua conta e comece a jogar com parceiros agora mesmo.
+            </p>
           </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
-              placeholder="Digite seu email"
-              autoComplete="email"
-            />
+
+          <div className="rail-login p-8">
+            <h2 className="text-xl font-semibold text-center text-purple-400 mb-4">Cadastro</h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="nome" className="block text-sm font-medium text-gray-300">
+                  Nome
+                </label>
+                <input
+                  id="nome"
+                  type="text"
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                  required
+                  className="mt-2 block w-full px-4 py-3 rounded-full bg-transparent border border-white/10 text-white placeholder:text-yellow-200"
+                  placeholder="Digite seu nome"
+                  autoComplete="name"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="mt-2 block w-full px-4 py-3 rounded-full bg-transparent border border-white/10 text-white placeholder:text-yellow-200"
+                  placeholder="Digite seu email"
+                  autoComplete="email"
+                />
+              </div>
+              <div>
+                <label htmlFor="senha" className="block text-sm font-medium text-gray-300">
+                  Senha
+                </label>
+                <input
+                  id="senha"
+                  type="password"
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
+                  required
+                  className="mt-2 block w-full px-4 py-3 rounded-full bg-transparent border border-white/10 text-white placeholder:text-yellow-200"
+                  placeholder="Digite sua senha"
+                  autoComplete="new-password"
+                />
+              </div>
+
+              {error && <div className="text-red-500 text-sm">{error}</div>}
+              {success && <div className="text-green-500 text-sm">{success}</div>}
+
+              <button
+                type="submit"
+                className="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-purple-500 text-white font-semibold rounded-full hover:opacity-95 transition-colors disabled:opacity-50"
+                disabled={loading}
+              >
+                {loading ? 'Cadastrando...' : 'Cadastrar'}
+              </button>
+            </form>
+
+            <div className="mt-4 text-sm text-gray-400 text-center">
+              Já tem conta?{' '}
+              <a href="/login" className="text-purple-300 hover:underline">
+                Faça login
+              </a>
+            </div>
           </div>
-          <div>
-            <label htmlFor="senha" className="block text-sm font-medium text-gray-700">
-              Senha
-            </label>
-            <input
-              id="senha"
-              type="password"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              required
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
-              placeholder="Digite sua senha"
-              autoComplete="new-password"
-            />
-          </div>
-          {error && <div className="text-red-600 text-sm text-center">{error}</div>}
-          {success && <div className="text-green-600 text-sm text-center">{success}</div>}
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition-colors disabled:opacity-50"
-            disabled={loading}
-          >
-            {loading ? 'Cadastrando...' : 'Cadastrar'}
-          </button>
-        </form>
-        <div className="mt-6 text-center text-sm text-gray-500">
-          Já tem conta?{' '}
-          <a href="/login" className="text-green-600 hover:underline">
-            Faça login
-          </a>
-        </div>
-      </div>
+        </aside>
+      </main>
     </div>
   );
 };
 
 export default RegisterPage;
-

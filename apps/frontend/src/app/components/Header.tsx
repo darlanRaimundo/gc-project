@@ -15,20 +15,29 @@ const Header: React.FC<HeaderProps> = ({ showLogout }) => {
   };
 
   return (
-    <header className="w-full bg-purple-700 text-white flex justify-between items-center px-8 py-4 shadow">
-      <button
-        onClick={() => router.push('/dashboard')}
-        className="text-white hover:text-gray-200 transition-colors"
-      >
-        <h1 className="text-xl font-bold">GC Project</h1>
-      </button>
+    <header className="w-full app-header flex justify-between items-center px-6 py-3">
+      <div className="brand" role="button" onClick={() => router.push('/dashboard')}>
+        <div className="logo">GC</div>
+        <div>
+          <div className="text-sm font-semibold">GC Project</div>
+          <div className="text-xs" style={{ color: 'rgba(255,255,255,0.85)' }}>Central Gamer</div>
+        </div>
+      </div>
       {showLogout && (
-        <button
-          onClick={handleLogout}
-          className="py-2 px-4 bg-red-500 rounded-md hover:bg-red-600 transition-colors"
-        >
-          Logout
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => router.push('/dashboard')}
+            className="text-sm text-white/90 hover:text-white/100 px-3 py-2 rounded-md border border-white/10"
+          >
+            Dashboard
+          </button>
+          <button
+            onClick={handleLogout}
+            className="py-2 px-4 bg-red-500 rounded-md hover:bg-red-600 transition-colors text-sm"
+          >
+            Logout
+          </button>
+        </div>
       )}
     </header>
   );

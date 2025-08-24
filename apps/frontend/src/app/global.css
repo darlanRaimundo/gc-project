@@ -4,9 +4,9 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
   line-height: 1.5;
   tab-size: 4;
   scroll-behavior: smooth;
@@ -15,6 +15,9 @@ body {
   font-family: inherit;
   line-height: inherit;
   margin: 0;
+  /* Central Gamer default dark background for pages that don't set their own background */
+  background: linear-gradient(180deg, #0b0f17 0%, #121217 100%);
+  color: rgba(229, 231, 235, 1);
 }
 h1,
 h2,
@@ -40,8 +43,8 @@ a {
   text-decoration: inherit;
 }
 pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    Liberation Mono, Courier New, monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New,
+    monospace;
 }
 svg {
   display: block;
@@ -53,8 +56,8 @@ pre {
   background-color: rgba(55, 65, 81, 1);
   border-radius: 0.25rem;
   color: rgba(229, 231, 235, 1);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    Liberation Mono, Courier New, monospace;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New,
+    monospace;
   overflow: scroll;
   padding: 0.5rem 0.75rem;
 }
@@ -168,9 +171,8 @@ pre {
   display: flex;
   margin-top: 1rem;
   padding: 1rem;
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter,
-    -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   width: 100%;
@@ -178,9 +180,8 @@ pre {
 .list-item-link svg:first-child {
   margin-right: 1rem;
   height: 1.5rem;
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter,
-    -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   width: 1.5rem;
@@ -188,9 +189,8 @@ pre {
 .list-item-link > span {
   flex-grow: 1;
   font-weight: 400;
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter,
-    -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -201,9 +201,8 @@ pre {
   font-size: 0.75rem;
   font-weight: 300;
   line-height: 1rem;
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter,
-    -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -231,17 +230,15 @@ pre {
 .button-pill {
   padding: 1.5rem 2rem;
   transition-duration: 300ms;
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter,
-    -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   align-items: center;
   display: flex;
 }
 .button-pill svg {
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter,
-    -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   flex-shrink: 0;
@@ -371,9 +368,8 @@ summary {
   font-weight: 400;
   padding: 0.5rem;
   cursor: pointer;
-  transition-property: background-color, border-color, color, fill, stroke,
-    opacity, box-shadow, transform, filter, backdrop-filter,
-    -webkit-backdrop-filter;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -410,4 +406,324 @@ summary svg {
   #middle-content {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* Brand theme overrides */
+:root {
+  --brand-purple: #6b21a8; /* purple-700 */
+  --brand-purple-600: #7c3aed;
+  --bg-dark: linear-gradient(90deg, #0f172a 0%, #111827 40%, #1f2937 100%);
+  --panel: rgba(15, 23, 42, 0.9);
+  --muted: rgba(148, 163, 184, 1);
+  --card-radius: 1rem;
+}
+
+body {
+  background: linear-gradient(90deg, rgba(15, 23, 42, 1) 0%, rgba(30, 41, 59, 1) 100%);
+  color: #e6eef8;
+}
+
+/* Header / Footer compact dark style */
+.app-header {
+  background: linear-gradient(90deg, rgba(124, 58, 237, 1), rgba(99, 102, 241, 1));
+  color: white;
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.5);
+  flex: 0 0 64px;
+  height: 64px;
+}
+.app-header .brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.app-header .brand .logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-purple);
+  font-weight: 700;
+}
+
+.app-footer {
+  background: linear-gradient(90deg, rgba(124, 58, 237, 1), rgba(99, 102, 241, 1));
+  color: white;
+  flex: 0 0 56px;
+  height: 56px;
+  margin-top: 0 !important;
+}
+
+/* Dashboard split layout */
+.dashboard-shell {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+  padding: 1.5rem 1rem;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 0;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+.dashboard-rail {
+  width: auto;
+  max-width: 560px;
+  background: linear-gradient(180deg, rgba(8, 10, 23, 0.95), rgba(20, 23, 37, 0.95));
+  border-radius: var(--card-radius);
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.5);
+}
+.rail-cta {
+  background: transparent;
+  color: white;
+}
+.rail-cta h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.rail-cta p {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.rail-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+.rail-buttons .btn-primary {
+  background: #7c3aed;
+  color: white;
+  padding: 0.65rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.dashboard-content {
+  flex: 1;
+  max-width: 980px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.dashboard-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  border-radius: var(--card-radius);
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.5);
+  color: #e6eef8;
+  /* let the outer main scroll; avoid nested scrollbars */
+  overflow: visible;
+  min-height: 0;
+  max-height: none;
+}
+
+.game-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border-radius: 0.75rem;
+  padding: 1rem;
+  text-align: center;
+  color: #e6eef8;
+}
+.game-card h3 {
+  color: #fff;
+}
+.game-card p {
+  color: var(--muted);
+}
+
+/* utility for rounded images */
+.rounded-avatar {
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+/* adjust footer spacing */
+.footer-spacer {
+  margin-top: 2rem;
+}
+
+/* Responsive and visual refinements for Central Gamer theme */
+/* Stack dashboard on smaller screens and make rail full width */
+@media (max-width: 1024px) {
+  .dashboard-shell {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    gap: 1rem;
+  }
+  .dashboard-rail {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  .dashboard-content {
+    max-width: 100%;
+  }
+}
+
+/* Tighter rail controls on very small screens */
+@media (max-width: 640px) {
+  .rail-buttons .btn-primary {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+  }
+  .app-header .brand .logo {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Game banner used on game detail page */
+.game-banner {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  border-radius: calc(var(--card-radius) - 0.25rem);
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.2));
+  box-shadow: inset 0 -60px 80px rgba(0, 0, 0, 0.35);
+  margin-bottom: 1rem;
+}
+.game-banner img,
+.game-banner .next-image,
+.game-banner > span {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* User list and user-card refinements (used on game detail) */
+.user-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.user-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+  border-radius: 0.75rem;
+  padding: 0.85rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+}
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px rgba(2, 6, 23, 0.6);
+}
+.user-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+}
+.user-meta h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  color: #fff;
+}
+.user-meta p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.user-actions {
+  margin-left: auto;
+  align-self: center;
+}
+
+/* Subtle borders for cards to separate from background */
+.dashboard-card,
+.game-card,
+.user-card {
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Game card improvements */
+.game-card {
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+.game-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.6);
+}
+
+/* Utility: small muted label */
+.meta-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+/* Footer spacing adjustments on tiny screens */
+@media (max-width: 420px) {
+  .footer-spacer {
+    margin-top: 1rem;
+  }
+}
+
+/* Ensure images inside game cards do not overflow */
+.game-card img,
+.rounded-avatar img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ...end of inserted refinements... */
+
+html,
+body,
+#__next {
+  height: 100%; /* ensure the app can size to the viewport */
+}
+
+/* Ensure Tailwind's `min-h-screen` layouts behave as column flex containers so header/footer
+   remain visible and the main content scrolls internally instead of expanding the whole page. */
+.min-h-screen {
+  height: 100vh; /* exact viewport height */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure footer inside a min-h-screen doesn't add extra spacing */
+.min-h-screen .app-footer {
+  margin-top: 0 !important;
+}
+
+/* Make the primary content area inside a min-h-screen scrollable and flexible. */
+.min-h-screen > main {
+  flex: 1 1 auto;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch; /* smoother scrolling on iOS */
+  min-height: 0; /* allow the flex child to shrink to available space */
+}
+
+/* Prevent header/footer from stretching; keep them as fixed-size flex children. */
+.min-h-screen > header,
+.min-h-screen > footer,
+.min-h-screen > .header,
+.min-h-screen > .footer {
+  flex: 0 0 auto;
+}
+
+/* Ensure centered page wrappers don't overflow their container vertically. */
+.min-h-screen .max-w-5xl {
+  max-height: 100%;
+}
+
+/* Optional: if some pages still use full-height sections, limit their height to viewport to avoid overflow */
+.section-fullscreen,
+.page-fullscreen {
+  max-height: 100vh;
+  overflow: auto;
 }

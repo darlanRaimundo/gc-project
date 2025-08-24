@@ -45,84 +45,86 @@ const DashboardPage: React.FC = () => {
   const isError = showSearch ? errorSearch : error;
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-br from-purple-100 to-blue-200">
+    <div className="min-h-screen flex flex-col">
       <Header showLogout />
-      <main className="flex flex-1 flex-col items-center justify-center">
-        <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl">
-          <div className="flex flex-col md:flex-row gap-4 mb-6">
-            <input
-              type="text"
-              placeholder="Pesquisar por nome..."
-              value={search}
-              onChange={(e) => {
-                setSearch(e.target.value);
-                setPage(1);
-              }}
-              className="px-3 py-2 border border-gray-300 rounded w-full md:w-1/2"
-            />
-            <select
-              value={categoria}
-              onChange={(e) => {
-                setCategoria(e.target.value);
-                setPage(1);
-              }}
-              className="px-3 py-2 border border-gray-300 rounded w-full md:w-1/2"
-              disabled={showSearch}
-            >
-              <option value="">Todas categorias</option>
-              {categories.map((cat) => (
-                <option key={cat.id} value={cat.nome}>
-                  {cat.nome}
-                </option>
-              ))}
-            </select>
-          </div>
-          {isLoading && <div className="text-center text-gray-500 mb-4">Carregando jogos...</div>}
-          {isError && <div className="text-center text-red-500 mb-4">{isError}</div>}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {(listaJogos.length > 0 ? listaJogos : []).map((game, idx) => (
-              <div
-                key={game.id || idx}
-                className="bg-blue-50 rounded-lg shadow p-4 flex flex-col items-center cursor-pointer hover:shadow-lg transition"
-                onClick={() => router.push(`/game/${game.id}`)}
+      <main className="dashboard-shell flex-1 max-w-5xl mx-auto w-full p-6 overflow-auto">
+        <section className="dashboard-content">
+          <div className="dashboard-card">
+            <div className="flex flex-col md:flex-row gap-4 mb-6">
+              <input
+                type="text"
+                placeholder="Pesquisar por nome..."
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setPage(1);
+                }}
+                className="px-3 py-2 rounded w-full md:w-1/2 bg-transparent border border-white/10 text-white"
+              />
+              <select
+                value={categoria}
+                onChange={(e) => {
+                  setCategoria(e.target.value);
+                  setPage(1);
+                }}
+                className="px-3 py-2 rounded w-full md:w-1/2 bg-transparent border border-white/10 text-white"
+                disabled={showSearch}
               >
-                <Image
-                  src={game.header_image || 'https://placehold.co/100x100'}
-                  alt={game.nome}
-                  width={80}
-                  height={80}
-                  className="mb-4 rounded-full w-20 h-20 object-cover"
-                  unoptimized
-                />
-                <h3 className="text-lg font-semibold text-blue-700 mb-2">{game.nome}</h3>
-                <p className="text-gray-600 text-center">
-                  {game.categoria?.join(', ') || 'Sem categoria'}
-                </p>
-              </div>
-            ))}
-          </div>
-          {!showSearch && (
-            <div className="flex justify-center items-center mt-8 gap-2">
-              <button
-                className="px-3 py-1 bg-purple-600 text-white rounded disabled:opacity-50"
-                disabled={page === 1}
-                onClick={() => setPage(page - 1)}
-              >
-                Anterior
-              </button>
-              <span className="mx-2 text-purple-700 font-semibold">
-                Página {page} de {totalPages}
-              </span>
-              <button
-                className="px-3 py-1 bg-purple-600 text-white rounded disabled:opacity-50"
-                disabled={page === totalPages || totalPages === 0}
-                onClick={() => setPage(page + 1)}
-              >
-                Próxima
-              </button>
+                <option value="">Todas categorias</option>
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.nome}>
+                    {cat.nome}
+                  </option>
+                ))}
+              </select>
             </div>
-          )}
-        </div>
+            {isLoading && <div className="text-center text-gray-400 mb-4">Carregando jogos...</div>}
+            {isError && <div className="text-center text-red-500 mb-4">{isError}</div>}
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {(listaJogos.length > 0 ? listaJogos : []).map((game, idx) => (
+                <div
+                  key={game.id || idx}
+                  className="game-card cursor-pointer hover:shadow-lg transition"
+                  onClick={() => router.push(`/game/${game.id}`)}
+                >
+                  <Image
+                    src={game.header_image || 'https://placehold.co/100x100'}
+                    alt={game.nome}
+                    width={80}
+                    height={80}
+                    className="mb-4 rounded-full w-20 h-20 object-cover"
+                    unoptimized
+                  />
+                  <h3 className="text-lg font-semibold mb-2">{game.nome}</h3>
+                  <p className="text-sm">{game.categoria?.join(', ') || 'Sem categoria'}</p>
+                </div>
+              ))}
+            </div>
+
+            {!showSearch && (
+              <div className="flex justify-center items-center mt-8 gap-2">
+                <button
+                  className="px-3 py-1 bg-purple-600 text-white rounded disabled:opacity-50"
+                  disabled={page === 1}
+                  onClick={() => setPage(page - 1)}
+                >
+                  Anterior
+                </button>
+                <span className="mx-2 text-purple-300 font-semibold">
+                  Página {page} de {totalPages}
+                </span>
+                <button
+                  className="px-3 py-1 bg-purple-600 text-white rounded disabled:opacity-50"
+                  disabled={page === totalPages || totalPages === 0}
+                  onClick={() => setPage(page + 1)}
+                >
+                  Próxima
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
