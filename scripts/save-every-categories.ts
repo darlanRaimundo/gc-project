@@ -18,7 +18,8 @@ async function main() {
   //      - string simples,
   //      - string com vários itens separados por vírgula.
   //    Remove valores falsy e espaços em branco das bordas.
-  const uniq = new Set<string>();
+  const uniq = new Map<string, string>();
+  const categoryKey = (value: string) => value.trim().toLocaleLowerCase();
   const normalize = (value: any) => {
     if (!value) return [];
     if (Array.isArray(value)) return value.filter(Boolean).map((v) => String(v).trim());
@@ -37,16 +38,23 @@ async function main() {
 
   for (const g of games) {
     const cats = normalize((g as any).categoria);
-    for (const c of cats) uniq.add(c);
+    for (const c of cats) {
+      const key = categoryKey(c);
+      if (key && !uniq.has(key)) {
+        uniq.set(key, c);
+      }
+    }
   }
 
   // 3) Filtrar categorias que já existem no banco para evitar duplicação
   //    Buscamos os nomes existentes e comparamos usando um Set para performance.
   const categoryRepo = AppDataSource.getRepository(Category);
   const existing = await categoryRepo.find({ select: ['nome'] });
-  const existingSet = new Set(existing.map((e: any) => String(e.nome).trim()));
+  const existingSet = new Set(existing.map((e: any) => categoryKey(String(e.nome))));
 
-  const newCategories = Array.from(uniq).filter((c) => !existingSet.has(c));
+  const newCategories = Array.from(uniq.entries())
+    .filter(([key]) => !existingSet.has(key))
+    .map(([, name]) => name);
   console.log(
     `Categorias totais encontradas: ${uniq.size}. Novas para inserir: ${newCategories.length}`,
   );
@@ -59,7 +67,7 @@ async function main() {
     const batch = newCategories.slice(i, i + batchSize).map((nome) => {
       // Ajuste de campos conforme a entidade Category do projeto.
       return {
-        nome
+        nome,
       } as Partial<Category>;
     });
 
