@@ -1,18 +1,18 @@
-# 🎮 GC Project
+# GC Project
 
 GC Project é uma plataforma para pessoas se cadastrarem e encontrarem parceiros para diversos jogos.
 
 ---
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
-- 👤 Cadastro de usuários
-- 🎲 Busca de parceiros para jogos variados
-- 🖥️ Interface moderna e responsiva
+- Cadastro de usuários
+- Busca de parceiros para jogos variados
+- Interface moderna e responsiva
 
 ---
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 - **Frontend:** [Next.js](https://nextjs.org/) (React)
 - **Backend:** [NestJS](https://nestjs.com/)
@@ -22,7 +22,7 @@ GC Project é uma plataforma para pessoas se cadastrarem e encontrarem parceiros
 
 ---
 
-## ⚡ Pré-requisitos
+## Pré-requisitos
 
 - [Node.js](https://nodejs.org/) >= 18.x
 - [npm](https://www.npmjs.com/) >= 9.x
@@ -30,14 +30,16 @@ GC Project é uma plataforma para pessoas se cadastrarem e encontrarem parceiros
 
 ---
 
-## 🗄️ Configuração do Banco de Dados
+## Instalação
 
-1. Crie um banco de dados MySQL local ou utilize um serviço externo.
-2. Copie o arquivo de exemplo de variáveis de ambiente:
+1. Instale as dependências:
+
    ```bash
-   cp .env.example .env
+   npm install
    ```
-3. Edite o arquivo `.env` com as credenciais do seu banco de dados:
+
+2. Crie um arquivo `.env` na raiz do projeto:
+
    ```env
    DB_HOST=localhost
    DB_PORT=3306
@@ -45,38 +47,96 @@ GC Project é uma plataforma para pessoas se cadastrarem e encontrarem parceiros
    DB_PASSWORD=sua_senha
    DB_NAME=gc_project
    ```
-4. Certifique-se de que o banco de dados está rodando antes de iniciar o backend.
+
+3. Crie o banco no MySQL:
+
+   ```sql
+   CREATE DATABASE gc_project;
+   ```
+
+4. Rode as migrations:
+
+   ```bash
+   npm run typeorm:migrate
+   ```
 
 ---
 
-## 🌐 Configuração de ambiente do Frontend
+## Configuração do Frontend
 
-Para que o frontend se comunique corretamente com o backend, crie um arquivo `.env.local` na pasta do frontend com o seguinte conteúdo:
+Para que o frontend se comunique com o backend, crie o arquivo `apps/frontend/.env.local`:
 
 ```env
 NEXT_PUBLIC_API_URL=http://localhost:3000
 ```
 
-- Altere o valor conforme o endereço do seu backend.
-- O frontend irá usar essa variável para todas as requisições à API.
+---
+
+## Como Rodar
+
+O Nx está instalado localmente no projeto. Por isso, use `npm run` ou `npx nx`; o comando `nx ...` sozinho só funciona se você tiver Nx instalado globalmente.
+
+Para subir backend e frontend juntos:
+
+```bash
+npm run dev
+```
+
+URLs padrão:
+
+- Backend: `http://localhost:3000`
+- Swagger: `http://localhost:3000/api/docs`
+- Frontend: o endereço mostrado pelo Next/Nx no terminal, normalmente `http://localhost:4200` ou `http://localhost:3001`
+
+Para rodar separadamente:
+
+```bash
+npx nx serve backend
+```
+
+```bash
+npx nx serve frontend
+```
+
+Se o Nx ficar preso em `Calculating the project graph on the Nx Daemon`, reinicie o daemon:
+
+```bash
+npx nx reset
+```
+
+Depois rode novamente:
+
+```bash
+npm run dev
+```
 
 ---
 
-## 🎮 Importação dos Jogos da Steam
+## Importação dos Jogos da Steam
 
-Para popular o banco com os jogos da Steam, execute o script abaixo:
+Para popular o banco com jogos da Steam, adicione também a chave da Steam no `.env`:
+
+```env
+STEAM_WEB_API_KEY=sua_chave_da_steam
+```
+
+A chave pode ser criada em:
+
+```text
+https://steamcommunity.com/dev/apikey
+```
+
+Depois execute:
 
 ```bash
 npm run import:steam
 ```
 
-Observações:
-
-- Esse comando leva muito tempo...
-
 Esse comando irá buscar todos os jogos da Steam e cadastrá-los em lotes no banco de dados.
 
-### 🏷️ Importação das Categorias
+Observação: esse comando pode levar bastante tempo.
+
+## Importação das Categorias
 
 Após importar os jogos, gere e salve todas as categorias extraídas dos jogos executando:
 
@@ -86,7 +146,7 @@ npm run save:categories
 
 Observações:
 
-- Certifique-se de que o backend e o banco de dados estão rodando.
+- Certifique-se de que o banco de dados está rodando.
 - Aplique as migrations antes de rodar o script:
   ```bash
   npm run typeorm:migrate
@@ -95,41 +155,20 @@ Observações:
 
 ---
 
-## ▶️ Como rodar o projeto
-
-1. Instale as dependências:
-
-   ```bash
-   npm install
-   ```
-
-2. Rode o backend:
-
-   ```bash
-   nx serve backend
-   ```
-
-3. Rode o frontend:
-   ```bash
-   nx serve frontend
-   ```
-
----
-
-## 🧪 Como rodar os testes
+## Como Rodar os Testes
 
 - Backend:
   ```bash
-  nx test backend
+  npx nx test backend
   ```
 - Frontend:
   ```bash
-  nx test frontend
+  npx nx test frontend
   ```
 
 ---
 
-## 📚 Documentação da API
+## Documentação da API
 
 Após iniciar o backend, acesse a documentação Swagger dos endpoints em:
 
@@ -139,7 +178,7 @@ http://localhost:3000/api/docs
 
 ---
 
-## 🤝 Como contribuir
+## Como Contribuir
 
 1. Faça um fork do projeto.
 2. Crie uma branch para sua feature ou correção:
@@ -153,7 +192,7 @@ Sinta-se à vontade para abrir issues ou pull requests!
 
 ---
 
-## 🔗 Links úteis
+## Links Úteis
 
 - [Nx Documentation](https://nx.dev/)
 - [NestJS Documentation](https://docs.nestjs.com/)
